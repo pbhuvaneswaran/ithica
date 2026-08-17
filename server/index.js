@@ -18,6 +18,10 @@ app.use('/api', batchRoute);
 
 app.get('/api/health', (req, res) => res.json({ ok: true, service: 'ithica' }));
 
-app.listen(PORT, () => {
-  console.log(`Ithica server running on http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Ithica server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
